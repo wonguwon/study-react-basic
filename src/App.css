@@ -5,38 +5,118 @@
   text-align: center;
 }
 
+/* ── 가이드 레이아웃 ── */
+.guide {
+  min-height: 100vh;
+  padding: 2rem 1rem;
+}
+
+.guide-header {
+  margin-bottom: 3rem;
+}
+
+.guide-header h1 {
+  font-size: 2.4rem;
+  margin: 0.5rem 0 0.8rem;
+}
+
+.guide-desc {
+  color: #aaa;
+  margin-bottom: 1rem;
+}
+
+.guide-cmd {
+  display: inline-block;
+  background: #1e1e2e;
+  color: #cdd6f4;
+  padding: 0.4em 1em;
+  border-radius: 6px;
+  font-size: 0.95em;
+  letter-spacing: 0.03em;
+}
+
+/* ── 브랜치 카드 그리드 ── */
+.branch-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.2rem;
+  text-align: left;
+}
+
+.branch-card {
+  background: #1a1a2e;
+  border: 1px solid #2a2a4a;
+  border-radius: 10px;
+  padding: 1.4rem 1.6rem;
+  transition: border-color 0.2s, transform 0.2s;
+}
+
+.branch-card:hover {
+  border-color: #646cff;
+  transform: translateY(-2px);
+}
+
+.branch-name {
+  font-size: 0.78rem;
+  color: #646cff;
+  font-family: monospace;
+  margin-bottom: 0.4rem;
+  letter-spacing: 0.04em;
+}
+
+.branch-title {
+  font-size: 1.1rem;
+  margin: 0 0 0.8rem;
+  color: #e2e8f0;
+}
+
+.branch-topics {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.branch-topics li {
+  font-size: 0.85rem;
+  color: #94a3b8;
+  padding: 0.25rem 0;
+  border-bottom: 1px solid #2a2a4a;
+  line-height: 1.5;
+}
+
+.branch-topics li:last-child {
+  border-bottom: none;
+}
+
+/* ── 로고 ── */
 .logo {
-  height: 6em;
-  padding: 1.5em;
+  height: 4em;
+  padding: 1em;
   will-change: filter;
   transition: filter 300ms;
 }
+
 .logo:hover {
   filter: drop-shadow(0 0 2em #646cffaa);
 }
+
 .logo.react:hover {
   filter: drop-shadow(0 0 2em #61dafbaa);
 }
 
 @keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
+  .logo.react {
     animation: logo-spin infinite 20s linear;
   }
 }
 
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
+@media (max-width: 600px) {
+  .branch-grid {
+    grid-template-columns: 1fr;
+  }
 }
