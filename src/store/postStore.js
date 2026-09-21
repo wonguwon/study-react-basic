@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import axios from 'axios';
+import * as postApi from '../api/posts';
 
 const usePostStore = create((set) => ({
   posts: [],
@@ -9,7 +9,7 @@ const usePostStore = create((set) => ({
   fetchPosts: async () => {
     set({ loading: true, error: null });
     try {
-      const response = await axios.get('https://jsonplaceholder.typicode.com/posts');
+      const response = await postApi.getPosts();
       set({ posts: response.data, loading: false });
     } catch (error) {
       set({ error: error.message, loading: false });
@@ -19,7 +19,7 @@ const usePostStore = create((set) => ({
   addPost: async (post) => {
     set({ loading: true, error: null });
     try {
-      const response = await axios.post('https://jsonplaceholder.typicode.com/posts', post);
+      const response = await postApi.createPost(post);
       set((state) => ({ 
         posts: [...state.posts, response.data],
         loading: false 
@@ -32,7 +32,7 @@ const usePostStore = create((set) => ({
   updatePost: async (id, updatedPost) => {
     set({ loading: true, error: null });
     try {
-      const response = await axios.put(`https://jsonplaceholder.typicode.com/posts/${id}`, updatedPost);
+      const response = await postApi.updatePost(id, updatedPost);
       
       if (response.status === 200) {
         set((state) => ({
@@ -53,7 +53,7 @@ const usePostStore = create((set) => ({
   deletePost: async (id) => {
     set({ loading: true, error: null });
     try {
-      await axios.delete(`https://jsonplaceholder.typicode.com/posts/${id}`);
+      await postApi.deletePost(id);
       set((state) => ({
         posts: state.posts.filter(post => post.id !== id),
         loading: false
